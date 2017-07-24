@@ -11,14 +11,17 @@ let sftp = new Client();
 sftp.connect({
     host: '127.0.0.1',
     port: '8080',
-    username: 'username'
+    username: 'username',
     password: '******'
 }).then(() => {
     return sftp.list('/pathname');
 }).then((data) => {
-    console.log(data, 'the data info');
+    console.log('The data info', data);
 }).catch((err) => {
-    console.log(err, 'catch error');
+    console.log('Catch error', err);
+}).then(() => {
+    sftp.end();
+    console.log('Connection closed');
 });
 ```
 
@@ -99,6 +102,13 @@ sftp.remove(remoteSourcePath, remoteDestPath);
 
 #### Connect
 connection config you will see [here](https://github.com/mscdex/ssh2#user-content-client-methods)
+
+#### Close connection
+close/end sftp client connection.
+
+```
+sftp.end();
+```
 
 ### FAQ
 
